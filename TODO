@@ -1,0 +1,3 @@
+* Create a lib for pic and avr to reduce the amount of code needed for
+  the plugins.
+  

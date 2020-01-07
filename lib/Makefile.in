@@ -1,0 +1,16 @@
+CC = gcc
+RM = rm -f
+CFLAGS = -I../include -Wall -fPIC
+OBJS = $(addsuffix .o, $(basename $(wildcard *.c)))
+
+
+libinfinity.a : $(OBJS)
+	$(AR) cr $@ $?
+
+%.o : %.c
+	$(CC) $(CFLAGS) -o $@ -c $<
+
+.PHONY : clean
+
+clean :
+	$(RM) *.o *.a

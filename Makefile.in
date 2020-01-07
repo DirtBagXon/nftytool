@@ -1,0 +1,25 @@
+CC = gcc
+OBJS = $(addsuffix .o, $(basename $(wildcard *.c)))
+LDFLAGS = -lusb -ldl -linfinity
+CFLAGS = -Wall -Wstrict-prototypes -I. -Iinclude/ -Llib/
+PROG = nftytool
+RM = rm -f
+
+all : $(OBJS) lib plugins
+	$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) -o $(PROG)
+
+%.o : %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+
+.PHONY : clean plugins lib
+
+plugins :
+	$(MAKE) -C $@
+
+lib :
+	$(MAKE) -C $@
+
+clean :
+	$(RM) $(PROG) *.o core
+

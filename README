@@ -1,0 +1,20 @@
+nftytool 1.0
+
+nftytool is a tool for using the Infinity USB and Infinity USB phoenix 
+card programmers. It also works for the less legitimate Digitech USB 
+card programmer.
+
+nftytool is based upon plugins which reside in the plugins directory chosen
+in the config file 'nftytool.conf'.
+
+Running 'nftytool -h' will give info on how to use the program. Most often
+a plugin will be used and then help for that particular plugin is received
+by running 'nftytool -p plugin -- -h'.
+
+If you don't want to be root while running this program, you need to 
+have read and write access to the device in /proc/bus/usb/XXX which is 
+associated with your card programmer.
+
+
+Author:
+Erik Thyrén <erth7411@student.uu.se>

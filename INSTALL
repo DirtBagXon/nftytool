@@ -1,0 +1,9 @@
+INSTALL instructions for nftytool
+
+0. ./configure
+1. make
+2. (become root if needed) 
+   ./nftytool -h
+   
+
+nftytool requires libusb and usbfs.

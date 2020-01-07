@@ -1,0 +1,38 @@
+
+AC_PREREQ(2.57)
+AC_INIT(nftytool, 1.1, erth7411@student.uu.se)
+AC_CONFIG_SRCDIR([nftytool.c])
+AC_CONFIG_HEADER([config.h])
+
+# Checks for programs.
+AC_PROG_CC
+
+# Checks for libraries.
+# FIXME: Replace `main' with a function in `-ldl':
+AC_CHECK_LIB([dl], dlsym)
+
+# FIXME: Replace `main' with a function in `-lusb':
+usb=""
+AC_CHECK_LIB([usb], usb_interrupt_read,usb="-lusb")
+if test "$usb" = ""; then
+    AC_MSG_ERROR([*** libusb not found or not up to date])
+fi
+
+# Checks for header files.
+AC_HEADER_DIRENT
+AC_HEADER_STDC
+AC_CHECK_HEADERS([fcntl.h stdlib.h string.h sys/ioctl.h unistd.h])
+
+# Checks for typedefs, structures, and compiler characteristics.
+AC_C_CONST
+AC_C_INLINE
+
+# Checks for library functions.
+AC_FUNC_MALLOC
+AC_FUNC_STAT
+AC_CHECK_FUNCS([memset strdup strrchr])
+
+AC_CONFIG_FILES([Makefile
+                 lib/Makefile
+                 plugins/Makefile])
+AC_OUTPUT

@@ -1,0 +1,22 @@
+Running:
+
+- I get messages like 'Error in usb_interrupt_write()' or
+  'Error in usb_interrupt_read()' when running nftytool. What is wrong?
+
+You probably don't have read/write access to the infinity device. Set
+the correct permissions or become superuser to be able to use the
+programmer.
+
+- Something about libusb missing stops me from installing. What's
+  wrong?
+  
+You need to install a newer version of libusb to make nftytool happy. 
+For gentoo use: 'emerge libusb' or something similar. 
+For slackware/others: sources are available at 
+http://libusb.sourceforge.net/
+As of this writing, 0.1.10a is the latest version of libusb.
+
+- How do I activate phoenix mode on my programmer?
+
+Something like this ought to do the trick:
+'nftytool -p phoenix -- -p phoenix -f 3.58 -e'
