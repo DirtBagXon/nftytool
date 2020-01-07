@@ -28,7 +28,7 @@
 int infinity_write_data(struct usb_infinity *inf, unsigned char *buf, int len) {
 	
 	int num;
-	num = usb_interrupt_write(inf->handle, inf->ep_out->bEndpointAddress, buf, len, 800);
+	num = usb_interrupt_write(inf->handle, inf->ep_out->bEndpointAddress, (const char*)buf, len, 800);
 	
 	if (num < 0)
 		fprintf(stderr, "Error in usb_interrupt_write()\n");
@@ -39,8 +39,7 @@ int infinity_write_data(struct usb_infinity *inf, unsigned char *buf, int len) {
 int infinity_read_data(struct usb_infinity *inf, unsigned char *buf, int len) {
 	
 	int num;
-	
-	num = usb_interrupt_read(inf->handle, inf->ep_in->bEndpointAddress, buf, len, 800);
+	num = usb_interrupt_read(inf->handle, inf->ep_in->bEndpointAddress, (char *)buf, len, 800);
 
 	if (num < 0)
 		fprintf(stderr, "Error in usb_interrupt_read()\n");
@@ -137,8 +136,8 @@ int infinity_get_firmware_version(struct usb_infinity *inf, unsigned char *resp)
 	infinity_write_data(inf, buf, 1);
 	
 	infinity_read_data(inf, buf, 4);
-	
-	strcpy(resp, buf);
+
+	strcpy((char *)resp, (char *)buf);
 	
 	return 0;
 }
@@ -154,8 +153,8 @@ int infinity_get_product_name(struct usb_infinity *inf, unsigned char *resp) {
 	infinity_write_data(inf, buf, 1);
 	
 	infinity_read_data(inf, buf, 16);
-	
-	strcpy(resp, buf);
+
+	strcpy((char *)resp, (char *)buf);
 	
 	return 0;
 }

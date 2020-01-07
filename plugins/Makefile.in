@@ -1,7 +1,7 @@
 CC = gcc
 RM = rm -f
 LDFLAGS = -linfinity -lusb -shared
-CFLAGS = -Wall -I../include -L../lib
+CFLAGS = -Wall -I../include -L../lib -fPIC
 S_OBJS = $(addsuffix .so, $(basename $(wildcard *.c)))
 
 all : $(S_OBJS)

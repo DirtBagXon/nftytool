@@ -203,8 +203,8 @@ int hexfile_get(struct hexfile *hex, struct hexdata *hdata) {
 	unsigned char rec_type;
 	unsigned char rec_checksum;
 	unsigned char checksum;
-	
-	fgets(data, 255, hex->fp);
+
+	fgets((char *)data, 255, hex->fp);
 	
 	if ( data[0] != ':' )
 		return -1;

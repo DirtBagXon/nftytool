@@ -42,7 +42,6 @@ static void show_usage(void) {
 
 int run(struct usb_infinity *inf, struct arg *arg, int argc, char **argv) {
 	
-	int i;
 	int c;
 	unsigned char b;
 	int opt_index;

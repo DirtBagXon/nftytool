@@ -95,10 +95,10 @@ void usb_stop(struct usb_infinity *inf) {
 
 int main(int argc, char **argv) {
 	
-	int i, j, c;
-	char *pname, *fname;
+	int i, c;
+	char *pname;
 	char cfile[256];
-	char name[20];
+	unsigned char name[20];
 	struct usb_infinity inf;
 	struct plugin **plugins;
 	struct arg arg;
@@ -108,13 +108,12 @@ int main(int argc, char **argv) {
 	int (*func)(struct usb_infinity *, struct arg *, int, char **);
 	
 	pname = NULL;
-	fname = NULL;
 	
 	if (argc < 2) {
 		exit_usage(argv[0], -1);
 	}
 
-	if (config_read_file("nftytool.conf"))
+	if (config_read_file("/etc/nftytool.conf"))
 		return -1;
 	
 	config_get_plugins_path(cfile);

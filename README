@@ -1,4 +1,4 @@
-nftytool 1.0
+nftytool 1.1.1
 
 nftytool is a tool for using the Infinity USB and Infinity USB phoenix 
 card programmers. It also works for the less legitimate Digitech USB 
@@ -16,5 +16,110 @@ have read and write access to the device in /proc/bus/usb/XXX which is
 associated with your card programmer.
 
 
-Author:
-Erik Thyrén <erth7411@student.uu.se>
+Help
+
+http://www.infinityusb.com/default.asp?show=supportdetail&SupportID=10
+
+nftytool -h
+
+
+List modules:
+-------------
+nftytool -l
+
+Available plugins:
+        gc - Goldcard (PIC16F84A + 24C16)
+        led - infinity USB LED
+        phoenix - Infinity USB phoenix
+        wc - Wafercard (PIC16F84A,PIC16F84)
+
+LED Actions
+-----------
+
+nftytool -p led -- -h 
+Infinity USB 1.06
+Options: 
+         -l, --led1 <brightness>  Sets led brightness
+         -h, --help               Prints this message
+
+
+nftytool -p led -- -l 1
+nftytool -p led -- -l 5
+
+
+GoldCard (PIC16F84A + 24C16)
+----------------------------
+
+nftytool -p gc -- -h
+Infinity USB 1.06
+Options:
+      -e <file>, --ext-read        Reads external eeprom from card to <file>
+      -f <file>, --ext-write       Writes from <file> to external eeprom
+      -p <file>, --pic-read        Reads from PIC to <file>
+      -q <file>, --pic-write       Writes from <file> to PIC
+      -c, --pic-clear              Clears the PIC
+      -l, --pic-loader             Writes loader to PIC
+      -x, --pic-cfg                Shows the PIC cfg and ID
+      -h, --help                   Displays this message
+
+
+nftytool -p gc -- -x
+Infinity USB 1.06
+ID: 0000 7ffe 7ffe 7ffe 
+CW: 7f fe
+
+nftytool -p gc -- -e eeprom
+nftytool -p gc -- -p pic
+
+Boot(loader):
+The main purpose of a bootloader is to allow updating the firmware through interfaces other
+than the default hardware interface. For example, this allows updates via communication channels
+that the application uses otherwise for its own purposes, which means that you can do remote
+in-system updates without requiring physical intervention at the remote site.
+
+
+WaferCard (PIC16F84A,PIC16F84)
+------------------------------
+
+nftytool -p wc -- -h
+Infinity USB 1.06
+Options:
+      -p <file>, --pic-read        Reads from PIC to <file>
+      -q <file>, --pic-write       Writes from <file> to PIC
+      -c, --pic-clear              Clears the PIC
+      -x, --pic-cfg                Shows the PIC cfg and ID
+      -h, --help                   Displays this message
+
+nftytool -p wc -- -x
+Infinity USB 1.06
+ID: 0000 7ffe 7ffe 7ffe 
+CW: 7f fe
+
+
+
+Set in phoenix/smartmouse
+-------------------------
+
+nftytool -p phoenix -- -h
+
+Options: 
+         -f, --freq <frequency>  Select frequency for player:
+                                 none, 3.58, 3.68, 6.00
+         -p, --pol <polarity>    Polarity on reset signal:
+                                 phoenix, smartmouse
+         -s, --status            Displays current phoenix status
+         -e, --enable            Enables phoenix mode
+         -d, --disable           Disables phoenix mode
+         -h, --help              Prints this message
+
+
+nftytool -p phoenix -- -s
+nftytool -p phoenix -- -d
+nftytool -p phoenix -- -e
+
+
+nftytool -p phoenix -- -p phoenix -f 3.58 -e
+nftytool -p phoenix -- -p smartmouse -f 3.58 -e
+
+nftytool -p phoenix -- -s
+

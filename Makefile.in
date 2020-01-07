@@ -1,7 +1,7 @@
 CC = gcc
 OBJS = $(addsuffix .o, $(basename $(wildcard *.c)))
 LDFLAGS = -lusb -ldl -linfinity
-CFLAGS = -Wall -Wstrict-prototypes -I. -Iinclude/ -Llib/
+CFLAGS = -Wall -Wstrict-prototypes -I. -Iinclude/ -Llib/ -fPIC
 PROG = nftytool
 RM = rm -f
 
@@ -21,5 +21,8 @@ lib :
 	$(MAKE) -C $@
 
 clean :
-	$(RM) $(PROG) *.o core
+	$(RM) $(PROG) *.o core lib/*.o lib/*.a plugins/*.so
+
+distclean:
+	$(RM) $(PROG) *.o core lib/*.o lib/*.a plugins/*.so Makefile lib/Makefile plugins/Makefile config.h config.log config.status
 

@@ -110,7 +110,6 @@ int get_info(struct plugin *plugin) {
 
 int run(struct usb_infinity *inf, struct arg *arg, int argc, char **argv) {
 	
-	int i;
 	int c;
 	int action;
 	int opt_index;

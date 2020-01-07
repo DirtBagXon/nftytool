@@ -435,7 +435,7 @@ int run(struct usb_infinity *inf, struct arg *arg, int argc, char **argv) {
 	
 	int c;
 	int opt_index;
-	char *e_read, *e_write, *p_read, *p_write;
+	char *p_read, *p_write;
 	struct option opt_options[] = {
 		{ "pic-read",   1, NULL, 'p' },
 		{ "pic-write",  1, NULL, 'q' },
@@ -445,7 +445,7 @@ int run(struct usb_infinity *inf, struct arg *arg, int argc, char **argv) {
 		{ NULL,         0, NULL, 0   }
 	};
 	
-	e_read = e_write = p_read = p_write = NULL;
+	p_read = p_write = NULL;
 	optind = opterr = optopt = 0;
 		
 	while ( (c = getopt_long(argc, argv, "cxhp:q:", opt_options, &opt_index)) != -1 ) {

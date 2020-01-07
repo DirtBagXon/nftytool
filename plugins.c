@@ -78,7 +78,7 @@ int plugins_cmp_so(const struct dirent *ent) {
 // them in plugins
 int plugins_load_all(const char *path, struct plugin ***plugins) {
 	
-	int i, j;
+	int i;
 	int entries;
 	char buf[256];
 	struct dirent **list;
@@ -92,7 +92,7 @@ int plugins_load_all(const char *path, struct plugin ***plugins) {
 		
 		for (i = 0 ; i < entries ; i++) {
 			(*plugins)[i] = (struct plugin *)malloc(sizeof (struct plugin));
-			snprintf(buf, 255, "%s/%s", path, list[i]->d_name);
+			snprintf(buf, 255, "%s/%s", path, list[i]->d_name) < 0 ? abort() : (void)0;
 			(*plugins)[i]->path = strdup(buf);
 			
 			if (plugins_load((*plugins)[i]->path, (*plugins)[i])) {
